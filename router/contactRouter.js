@@ -1,5 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
+import config from '../config.js';
 const router = express.Router();
 
 router.get('/',(req,res)=>{
@@ -12,15 +13,16 @@ router.post('/',(req,res)=>{
         const {firstname, lastname, useremail, userfeedback} = formdata;
         //Email Configurations
         const transporter = nodemailer.createTransport({
-            service: process.env.EMAIL_SERVICE,
+            service: config.EMAIL_USER_ID,
             auth: {
-              user: process.env.EMAIL_USER_ID,
-              pass: process.env.EMAIL_PASSWORD
+              user: config.EMAIL_USER_ID,
+              pass: config.EMAIL_PASSWORD
             }
           });
-          //Email subject details
+
+          //Email options
             const mailOptions = {
-            from: process.env.EMAIL_USER_ID,
+            from: config.EMAIL_USER_ID,
             to: useremail,
             subject: 'Thanks for your feedback !!',
             text: 'Hello! Thanks for your feedback. We will check'
