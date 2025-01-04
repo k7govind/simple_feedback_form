@@ -21,9 +21,15 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <% if (emailSent  === true) { %>
+                    <% if (formResult  == 'success') { %>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Feedback Submitted!! </strong> Thanks for sharing feedback
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                      <% } %>
+                      <% if (formResult  == 'fail') { %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Feedback Not Submitted!! </strong> Please try again!!
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>
                       <% } %>
