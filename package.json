@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Simple Feedback Form to collect user details and email test details",
   "main": "main.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon main.js -e js,ejs,mjs",
     "dev": "nodemon main.js -e js,ejs,mjs"
   },
   "repository": {
@@ -22,7 +22,8 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^6.9.16",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
