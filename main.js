@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'node:url';
+import  helmet  from 'helmet';
 import contactRouter from './router/contactRouter.js';
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
@@ -10,6 +11,7 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(helmet());
 app.use(express.static(path.join(__dirname,'public')));
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
