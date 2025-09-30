@@ -18,14 +18,18 @@
   "author": "Govindarajan Kesavan",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.8",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "helmet": "^8.0.0",
+    "joi": "^17.13.3",
+    "jquery": "^3.7.1",
+    "jquery-validation": "^1.21.0",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.9.16",
-    "validator": "^13.12.0"
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.1",
+    "nodemailer": "^6.9.16"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

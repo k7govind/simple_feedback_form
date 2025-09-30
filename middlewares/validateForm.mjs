@@ -1,18 +1,14 @@
-import validator from 'validator';
+import Joi from 'joi';
 export const validateForm = (req,res,next)=>{
-    const formdata = req.body;
-    var noEmptyFields = false;
-    var validatedEmail = false;
-    var ensureString = false;
-    if(formdata != null && !validator.isEmpty(formdata)) {
-        const {firstname, lastname, useremail, userfeedback} = formdata;
-        if(!validator.isEmpty(firstname) && !validator.isEmpty(lastname) && !validator.isEmpty(useremail)) {
-            noEmptyFields = true;
-        }
-        validatedEmail = validator.isEmail(useremail);
-        if(validator.isAlpha(firstname) && validator.isAlpha(lastname)) {
-            ensureString = true;
-        }
-        return (noEmptyFields && validatedEmail && ensureString) ? true : false;
-    }
+    //const formdata = req.body;
+    //const { firstname, lastname, useremail, userfeedback } = formdata;
+    const schema = Joi.object({
+        firstname : Joi.string().min(3).max(255).required().trim(),
+        lastname : Joi.string().min(1).max(255).required().trim(),
+        useremail : Joi.string().email().required().trim(),
+        userfeedback : Joi.string().min(5)
+    });
+    const {error, value} = schema.validate(req.body);
+    req.formValidationResultObj = {error, value};
+    next();
 }

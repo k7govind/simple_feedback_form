@@ -11,15 +11,24 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(helmet());
+// Configure the Content-Security-Policy header.
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.static(path.join(__dirname,'public')));
+
+app.use('/bootstrap-css', express.static(path.join(__dirname,'node_modules/bootstrap/dist/css/')));
+app.use('/bootstrap-js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js/')));
+app.use('/jquery', express.static(path.join(__dirname,'node_modules/jquery/dist/')));
+app.use(
+  "/jquery-validation",
+  express.static(path.join(__dirname, "node_modules/jquery-validation/dist/"))
+);
+
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
-
-app.use('/contact',contactRouter);
+app.use(express.urlencoded({extended:true}));
+app.use("/contact", contactRouter);
 
 app.listen(PORT,()=>{
     console.log(`Server listening on ${PORT}`);
